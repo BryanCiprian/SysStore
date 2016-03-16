@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.itskill.mapper.UsuarioMapper">
+
+	
+    
+    <resultMap id="usuarioMap" type="Usuario">
+        <id column="id_usuario" property="id_usuario"></id>
+        <result column="id_estadousuario" property="id_estadousuario"></result>
+        <result column="var_usuario" property="var_usuario"></result>
+        <result column="var_clave" property="var_clave"></result>
+        <result column="tms_fechacreacion" property="tms_fechacreacion"></result>
+        <result column="tms_fechamodif" property="tms_fechamodif"></result> 
+        <result column="id_rol" property="id_rol"></result>
+          <result column="nombres" property="nombres"></result>
+  
+        <association property="personaBean" javaType="Persona">
+             <id column="id_persona" property="id_persona"></id>
+             <result column="var_nombre" property="var_nombre"></result>
+             <result column="var_apepaterno" property="var_apepaterno"></result>
+             <result column="var_apematerno" property="var_apematerno"></result>
+        </association>
+    </resultMap>
+    
+ 
+
+ 
+	
+    <select id="findByName" resultMap="usuarioMap">
+        SELECT u.id_usuario, u.id_persona, u.id_rol, u.id_estado, u.var_usuario, u.var_clave,
+        p.des_nombre, p.ape_paterno, p.ape_materno ,   p.des_nombre||' '|| p.ape_paterno ||' '|| p.ape_materno as nombres
+        FROM tbl07_usuario u inner join tbl03_persona p
+        ON u.id_persona = p.id_persona
+        WHERE u.id_estado=1 AND
+        u.var_usuario=#{pvar_usu_usuario};
+    </select>
+	
+
+</mapper>

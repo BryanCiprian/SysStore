@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.itskill.mapper.ConfiguracionMapper">
+	<select id="save" resultType="Integer" parameterType="ConfiguracionBean">
+		select
+		spi_tbl30_configuracion(#{ruc_empresa},#{nom_empresa},#{dir_empresa},
+		#{url_logo_empresa},#{pos_menu},#{foot_empresa},
+		#{usuario});
+	</select>
+
+	<select id="update" resultType="Integer" parameterType="ConfiguracionBean">
+		select
+		spu_tbl30_configuracion(#{id_config},,#{ruc_empresa},#{nom_empresa},#{dir_empresa},
+		#{url_logo_empresa},#{pos_menu},#{foot_empresa},
+		#{usuario});
+	</select>
+
+	<select id="listarConfig" resultType="ConfiguracionBean"
+		parameterType="ConfiguracionBean">
+		select * from tbl30_configuracion;
+	</select>
+</mapper>

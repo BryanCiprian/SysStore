@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.itskill.mapper.MarcaMapper">
+    
+    <resultMap id="marcaMap" type="Marca">
+        <id column="idMarca" property="id_marca"></id>
+        <result column="nomMarca" property="desc_marca"></result>
+        <result column="idEstado" property="id_estado"></result>   
+        <association property="usuarioBean" javaType="Usuario">
+            <id column="id_usuario" property="id_usuario"></id>            
+            <result column="var_usuario" property="var_usuario"></result>
+            <result column="var_clave" property="var_clave"></result>
+        </association>     
+    </resultMap>
+    
+	<select id="save" resultType="Integer" parameterType="Marca">       
+        SELECT spi_tbl_marca (#{nomMarca} , 1,#{usuarioBean.var_usuario});        
+    </select>
+    
+    <select id="listarAll" resultType="Marca">
+	    SELECT id_marca as idMarca, desc_marca as nomMarca
+        FROM tbl10_marca where id_estado=1 order by 2;
+ 	</select> 
+
+    
+</mapper>

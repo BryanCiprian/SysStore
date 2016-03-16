@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.itskill.mapper.ArticuloMapper">
+
+	<resultMap id="ArticuloMap" type="Articulo">
+		<result property="idArticulo" column="id_articulo" />
+		<result property="codArt" column="cod_art" />
+		<result property="desArt" column="des_art" />
+		<result property="carArt" column="car_art" />
+		<result property="disArt" column="dis_art" />
+		<result property="modArt" column="mod_art" />
+		<result property="stkMinArt" column="stk_min_art" />
+		<result property="stkMaxArt" column="stk_max_art" />
+		<result property="urlFotoArt" column="url_foto_art" />
+		<result property="idClasificacion" column="id_clas_art" />
+		<result property="idUniMedArt" column="id_uni_med_art" />
+		<association property="usuarioBean" javaType="Usuario">
+			<id column="id_usuario" property="id_usuario"></id>
+			<result column="var_usuario" property="var_usuario"></result>
+			<result column="var_clave" property="var_clave"></result>
+		</association>
+		<association property="marcaBean" javaType="Marca">
+			<id column="id_marca" property="id_marca"></id>
+			<result column="desc_marca" property="desc_marca"></result>
+		</association>
+		<association property="invDocBean" javaType="InventarioDocumento">
+			<id column="id_inv_doc" property="id_inv_doc"></id>
+			<result column="tab_padre" property="tab_padre"></result>
+			<result column="num_tabla" property="num_tabla"></result>
+			<result column="des_doc" property="des_doc"></result>
+			<result column="num_doc" property="num_doc"></result>
+			<result column="nom_corto" property="nom_corto"></result>
+		</association>
+		<association property="procedenciaBean" javaType="Procedencia">
+			<id column="id_proc" property="id_proc"></id>
+			<result column="des_proc" property="des_proc"></result>
+		</association>
+		<association property="estadoBean" javaType="Estado">
+			<id column="id_estado" property="id_estado"></id>
+			<result column="var_nombreestado" property="var_nombreestado"></result>
+		</association>
+		<association property="claseBean" javaType="Clase">
+			<id column="idClase" property="id_clase"></id>
+			<result column="desClase" property="des_clase"></result>
+			<result column="naturaleza" property="nat_clase"></result>
+		</association>
+		<association property="grupoBean" javaType="Grupo">
+			<id column="idGrupo" property="id_grupo"></id>
+			<result column="desGrupo" property="des_grupo"></result>
+		</association>
+		<association property="ctaBean" javaType="Cuenta">
+			<id column="idCuenta" property="id_cuenta"></id>
+			<result column="desCuenta" property="des_cuenta"></result>
+		</association>
+		<association property="subCtaBean" javaType="SubCuenta">
+			<id column="idSubCuenta" property="id_sub_cuenta"></id>
+			<result column="desSubCuenta" property="des_sub_cuenta"></result>
+		</association>
+	</resultMap>
+
+	<select id="getAll" resultMap="ArticuloMap">
+		SELECT a.*,m.desc_marca ,i.des_doc ,i.id_inv_doc ,p.id_proc ,p.des_proc FROM
+		tbl27_articulo a,
+		tbl10_marca m,
+		tbl17_inv_doc i,
+		tbl22_procedencia p
+
+		where a.id_estado ='1'
+		and m.id_estado='1'
+		and i.id_estado='1'
+		and m.id_marca=a.id_marca
+		and i.id_inv_doc=a.id_clas_art
+		and p.id_proc =a.id_proc_art
+		;
+
+	</select>
+	<select id="deleteArticulo" parameterType="String">
+		SELECT * FROM spd_tbl27_articulo(#{id_articulo});
+	</select>
+
+	<select id="save" resultType="Integer" parameterType="Articulo">
+		SELECT spi_tbl_articulo( #{codArt},#{desArt},#{carArt},
+		#{disArt},#{modArt}, #{stkMinArt},#{stkMaxArt},#{urlFotoArt},
+		#{usuarioBean.var_usuario}, #{marcaBean.idMarca}, #{idClasificacion},
+		#{idUniMedArt}, #{procedenciaBean.idProcedencia},
+		1);
+	</select>
+
+
+</mapper>

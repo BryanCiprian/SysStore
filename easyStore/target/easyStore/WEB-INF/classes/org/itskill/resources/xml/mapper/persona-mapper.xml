@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+
+<mapper namespace="org.itskill.mapper.PersonaMapper">
+    
+ 	<resultMap id="personaMap" type="Persona">
+        <id column="id_persona" property="id_persona"></id>
+        <result column="des_nombre" property="des_nombre"></result>
+        <result column="ape_paterno" property="ape_paterno"></result>
+        <result column="ape_materno" property="ape_materno"></result>      
+    </resultMap>
+    
+    <select id="save" resultType="Integer" parameterType="Persona">
+        SELECT spi_tbl03_persona ( #{des_nombre},  #{ape_paterno}, #{ape_materno}, #{dni}, #{direccion},#{zonaBean.id_zona});
+    </select>
+ 
+    
+</mapper>

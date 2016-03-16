@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.1//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias alias="Usuario" type="org.itskill.bean.UsuarioBean"></typeAlias>
+		<typeAlias alias="Persona" type="org.itskill.bean.PersonaBean"></typeAlias>
+		<typeAlias alias="Vista" type="org.itskill.bean.VistaBean"></typeAlias>
+		<typeAlias alias="Menu" type="org.itskill.bean.MenuBean"></typeAlias>
+
+		 
+		<typeAlias alias="ConfiguracionBean" type="org.itskill.bean.ConfiguracionBean"></typeAlias>
+
+	</typeAliases>
+	<mappers>
+		<mapper resource="org/itskill/resources/xml/mapper/usuario-mapper.xml" />
+		<mapper resource="org/itskill/resources/xml/mapper/persona-mapper.xml" />
+		<mapper resource="org/itskill/resources/xml/mapper/vista-mapper.xml" />
+		<mapper resource="org/itskill/resources/xml/mapper/vistaHijo-mapper.xml" />
+		<mapper resource="org/itskill/resources/xml/mapper/configuracion-mapper.xml" />
+
+	</mappers>
+</configuration>
