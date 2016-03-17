@@ -13,7 +13,7 @@
 
 		<typeAlias alias="ConfiguracionBean" type="org.itskill.bean.ConfiguracionBean"></typeAlias>
 		<typeAlias alias="Articulo" type="org.itskill.bean.ArticuloBean"></typeAlias>
-
+                <typeAlias alias="MarcaBean" type="org.itskill.bean.MarcaBean"></typeAlias>   
 		<typeAlias alias="InventarioDocumento" type="org.itskill.bean.InventarioDocumentoBean"></typeAlias>
 
 
@@ -40,7 +40,7 @@
 		<mapper resource="org/itskill/resources/xml/mapper/planContable-mapper.xml" />
 		<mapper
 			resource="org/itskill/resources/xml/mapper/inventarioDocumento-mapper.xml" />
-
+                 <mapper resource="org/itskill/resources/xml/mapper/marca-mapper.xml" />
 
 
 	</mappers>
