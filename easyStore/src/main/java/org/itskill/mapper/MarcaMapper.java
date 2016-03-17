@@ -1,17 +1,16 @@
 package org.itskill.mapper;
 
 import java.util.List;
- 
-import org.itskill.bean.MarcaBean; 
+
+import org.itskill.bean.MarcaBean;
 import org.springframework.stereotype.Component;
 
-/**
- *
- * @author Administrador
- */
 @Component
 public interface MarcaMapper {
- 
-    public Integer  save(MarcaBean marca);
-    public List<MarcaBean> listarAll();
+
+	public List<MarcaBean> listarAll();
+	public Integer save(MarcaBean marca);
+	public Integer delete(MarcaBean marca);
+	public Integer update(MarcaBean marca);
+	public MarcaBean listxid(MarcaBean marca);
 }
